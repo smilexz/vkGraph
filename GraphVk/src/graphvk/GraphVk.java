@@ -13,77 +13,68 @@ import java.util.Scanner;
 
 /**
  *
- * @author Smile
+ * 
  */
 public class GraphVk {
     public static String paramsSearch;
     public static  Map<String, String> fieldsZaprosa;
-  // static String access_token = "02862403d14bddcdf6817b0af0c517ba05e74389e2fab6fb7610a546a239df542aec647ea8d45dfc67f02";
-    /**
+   /**
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {
-       fieldsZaprosa = new HashMap<>();
-        String resultScan, fields;
-        paramsSearch = "";
-        fields = "&fields=";
-        Scanner filter = new Scanner(System.in, "cp1251");
-        System.out.println("Ввод фильтров, если фильтр не нужен нажмите enter");
-         System.out.print("Ведите Страну:");
-        resultScan = filter.nextLine();
-        if(!resultScan.isEmpty())
-        {
-            fieldsZaprosa.put("country", resultScan);
-            paramsSearch = "&country=" + resultScan;
-            fields += "country,";
-        }
-        System.out.print("Ведите Город:");
-        resultScan = filter.nextLine();
-        if(!resultScan.isEmpty())
-        {
-            fieldsZaprosa.put("city", resultScan);
-            paramsSearch += "&city=" + resultScan;
-            fields += "city,";
-        }
-       
-        System.out.print("Ведите пол:");
-        resultScan = filter.nextLine();
-        if(!resultScan.isEmpty())
-        {
-            fieldsZaprosa.put("sex", resultScan);
-            paramsSearch += "&sex=" + resultScan;
-            fields += "sex,";
-        }
-         System.out.print("Ведите Вуз:");
-        resultScan = filter.nextLine();
-        if(!resultScan.isEmpty())
-        {
-            fieldsZaprosa.put("universities", resultScan);
-            paramsSearch += "&university=" + resultScan;
-             fields += "universities";
-        }
-        ArrayList<String> userList = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<>();
-        Search str = new Search();
-        userList = str.zaprosSearch();
-        Integer userListCout = 0;
-        while(true){
-            for (int i = userListCout; i < userList.size(); i++) {
-                list.add(userList.get(i));
-            }
-        userListCout = userList.size();
-        if( list.isEmpty())
-        {
-            break;
-        }
-    for(int j=0; j<list.size();j++)
-       {
-      str.getUserFriend(list.get(j), fields);
-       }
-        list.clear();
-        }
-        System.out.println("Вершин в графе: " +userList.size());
+public static void main(String[] args) throws IOException {
+   fieldsZaprosa = new HashMap<>();
+    String resultScan, fields;
+    paramsSearch = "";
+    fields = "&fields=";
+    Scanner filter = new Scanner(System.in, "cp1251");
+    System.out.println("Ввод фильтров, если фильтр не нужен нажмите enter");
+    System.out.print("Введите Страну:");
+    resultScan = filter.nextLine();
+    if(!resultScan.isEmpty()) {
+        fieldsZaprosa.put("country", resultScan);
+        paramsSearch = "&country=" + resultScan;
+        fields += "country,";
     }
-    
+    System.out.print("Введите Город:");
+    resultScan = filter.nextLine();
+    if(!resultScan.isEmpty()) {
+        fieldsZaprosa.put("city", resultScan);
+        paramsSearch += "&city=" + resultScan;
+        fields += "city,";
+    }
+    System.out.print("Введите пол:");
+    resultScan = filter.nextLine();
+    if(!resultScan.isEmpty()) {
+        fieldsZaprosa.put("sex", resultScan);
+        paramsSearch += "&sex=" + resultScan;
+        fields += "sex,";
+    }
+    System.out.print("Введите Вуз:");
+    resultScan = filter.nextLine();
+    if(!resultScan.isEmpty()) {
+        fieldsZaprosa.put("universities", resultScan);
+        paramsSearch += "&university=" + resultScan;
+        fields += "universities";
+    }
+    ArrayList<String> userList = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
+    Search str = new Search();
+    userList = str.zaprosSearch();
+    Integer userListCout = 0;
+    while(true){
+        for (int i = userListCout; i < userList.size(); i++) {
+            list.add(userList.get(i));
+        }
+    userListCout = userList.size();
+    if( list.isEmpty()) {
+        break;
+    }
+    for(int j=0; j<list.size();j++) {
+        str.getUserFriend(list.get(j), fields);
+   }
+    list.clear();
+    }
+    System.out.println("Вершин в графе: " +userList.size());
+}   
 }
